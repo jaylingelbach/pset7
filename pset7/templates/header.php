@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
 <html>
 
@@ -14,7 +14,7 @@
             <title>C$50 Finance</title>
         <?php endif ?>
 
-        <script src="/js/jquery-1.10.2.min.js"></script>
+        <script src="/js/jquery-1.11.1.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/scripts.js"></script>
 
@@ -22,10 +22,22 @@
 
     <body>
 
-        <div class="container">
+        <div class="container-fluid">
 
             <div id="top">
                 <a href="/"><img alt="C$50 Finance" src="/img/logo.gif"/></a>
             </div>
 
             <div id="middle">
+            
+           <?php
+           
+           if(isset($_SESSION["id"])): ?>
+           <ul class = "nav nav-pills">
+           <li><a href = "login.php">Login / Logout</a></li>
+           <li><a href = "index.php">Portfolio</a></li>
+           <li><a href = "quote.php">Quotes</a></li>
+           <li><a href = "buy.php">Buy</a></li>
+           <li><a href = "sell.php">Sell</a></li>
+           </ul>
+           <?php endif ?>

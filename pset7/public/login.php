@@ -3,8 +3,15 @@
     // configuration
     require("../includes/config.php"); 
 
-    // if form was submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    // if user reached page via GET (as by clicking a link or via redirect)
+    if ($_SERVER["REQUEST_METHOD"] == "GET")
+    {
+        // else render form
+        render("login_form.php", ["title" => "Log In"]);
+    }
+
+    // else if user reached page via POST (as by submitting a form via POST)
+    else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         // validate submission
         if (empty($_POST["username"]))
@@ -30,19 +37,16 @@
             {
                 // remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];
+                $_SESSION["cash"] = $row["cash"];
 
                 // redirect to portfolio
-                redirect("/");
+                redirect("index.php");
             }
         }
-
-        // else apologize
-        apologize("Invalid username and/or password.");
+        
+            // else apologize
+            apologize("Invalid username and/or password.");
+       
     }
-    else
-    {
-        // else render form
-        render("login_form.php", ["title" => "Log In"]);
-    }
-
+   
 ?>
